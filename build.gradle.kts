@@ -5,10 +5,11 @@ plugins {
     application
 
     id("org.jlleitschuh.gradle.ktlint") version "10.2.1"
+    id("maven-publish")
 }
 
-group = "com.flagsmith.kotlin"
-version = "1.0-SNAPSHOT"
+group = "com.flagsmith"
+version = "1.0.0"
 
 repositories {
     mavenCentral()
@@ -19,8 +20,9 @@ dependencies {
     testImplementation(kotlin("test"))
 
     // https://mvnrepository.com/artifact/com.flagsmith/flagsmith-java-client
-    implementation("com.flagsmith:flagsmith-java-client:5.0.0")
-
+    api("com.flagsmith:flagsmith-java-client:5.0.0") {
+        isTransitive = true
+    }
 }
 
 tasks.test {
@@ -29,4 +31,25 @@ tasks.test {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+publishing {
+    publications {
+        // Specify relocation POM
+        create<MavenPublication>("mavenJava") {
+            pom {
+                // Old artifact coordinates
+                groupId = "com.flagsmith"
+                artifactId = "flagsmith-kotlin-client"
+                version = "1.0.0"
+
+                from(components["java"])
+            }
+        }
+    }
 }

@@ -1,12 +1,12 @@
-package com.flagsmith.kotlin;
+package com.flagsmith.kotlin
 
 import com.flagsmith.FlagsmithLoggerLevel
 import com.flagsmith.config.FlagsmithCacheConfig
-import com.flagsmith.FlagsmithClient as FlagsmithJavaClient;
 import com.flagsmith.config.FlagsmithConfig
 import com.flagsmith.models.BaseFlag
 import com.flagsmith.threads.PollingManager
 import java.util.function.Function
+import com.flagsmith.FlagsmithClient as FlagsmithJavaClient
 
 class FlagsmithClient private constructor(
     val client: FlagsmithJavaClient
@@ -15,14 +15,14 @@ class FlagsmithClient private constructor(
 
     fun getEnvironmentFlags() = client.environmentFlags
 
-    fun getIdentityFlags(identifier: String, traits: HashMap<String, Any>?)
-        = client.getIdentityFlags(identifier, traits)
+    fun getIdentityFlags(identifier: String, traits: HashMap<String, Any>?) =
+        client.getIdentityFlags(identifier, traits)
 
     data class Builder(
         var clientBuilder: FlagsmithJavaClient.Builder? = null
     ) {
         init {
-            clientBuilder = FlagsmithJavaClient.newBuilder();
+            clientBuilder = FlagsmithJavaClient.newBuilder()
         }
 
         fun apiKey(apiKey: String) = apply {
