@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "com.flagsmith"
-version = "1.0.0"
+version = "5.0.0"
 
 repositories {
     mavenCentral()
