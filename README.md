@@ -2,7 +2,7 @@
 
 # Flagsmith Kotlin Client
 
-> **NOTE:**  This repository is archived in favour of using our Java client for Kotlin server based applications and our [Kotlin android client](https://github.com/Flagsmith/flagsmith-kotlin-android-client) for Android applications. 
+> **NOTE:**  This repository is archived in favour of using our [Java client](https://github.com/Flagsmith/flagsmith-java-client) for Kotlin server based applications and our [Kotlin android client](https://github.com/Flagsmith/flagsmith-kotlin-android-client) for Android applications. 
 
 The SDK clients for Kotlin for [https://www.flagsmith.com/](https://www.flagsmith.com/). Flagsmith allows you to manage feature flags and remote config across multiple projects, environments and organisations.
 
