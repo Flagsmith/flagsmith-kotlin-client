@@ -4,6 +4,7 @@ import com.flagsmith.FlagsmithLoggerLevel
 import com.flagsmith.config.FlagsmithCacheConfig
 import com.flagsmith.config.FlagsmithConfig
 import com.flagsmith.models.BaseFlag
+import com.flagsmith.models.Flags
 import com.flagsmith.threads.PollingManager
 import java.util.function.Function
 import com.flagsmith.FlagsmithClient as FlagsmithJavaClient
@@ -15,8 +16,12 @@ class FlagsmithClient private constructor(
 
     fun getEnvironmentFlags() = client.environmentFlags
 
-    fun getIdentityFlags(identifier: String, traits: HashMap<String, Any>?) =
-        client.getIdentityFlags(identifier, traits)
+    fun getIdentityFlags(identifier: String, traits: HashMap<String, Any>? = null): Flags {
+        if (traits == null) {
+            return client.getIdentityFlags(identifier)
+        }
+        return client.getIdentityFlags(identifier, traits)
+    }
 
     data class Builder(
         var clientBuilder: FlagsmithJavaClient.Builder? = null
